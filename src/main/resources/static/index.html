@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html ng-app="transitApp">
+<head>
+    <meta charset="UTF-8"></meta>
+    <link type="text/css" rel="stylesheet" href="stylesheet.css" />
+    <title>Transits</title>
+</head>
+
+<body ng-controller="TransitController as transitController">
+    <div id="header">
+        <p>Transits</p>
+    </div>
+    
+    <div id="content">
+        <div class="left">
+            <h1>Add transit</h1>
+            <hr>
+            <form>
+                <input type="text" ng-model="transitController.transit.sourceAddress" placeholder="Aleje Jerozolimskie 1, Warszawa"><br>
+                <input type="text" ng-model="transitController.transit.destinationAddress" placeholder="Mickiewicza 1, Katowice"><br>
+                <input type="text" ng-model="transitController.transit.avgFuelConsumption" placeholder="6.5"><br>
+                <input type="text" ng-model="transitController.transit.fuelCostPerLitre" placeholder="4.80"><br>
+                <input type="text" ng-model="transitController.transit.date" placeholder="2018-01-15"><br>
+                <button ng-click="transitController.addTransit(transitController.transit)">Add Transit</button>
+            </form>
+
+            <h1>Periodic report</h1>
+            <hr>
+            <form>
+                <input type="text" ng-model="transitController.periodicReport.startDate" placeholder={{transitController.periodicReport.startDate}}><br>
+                <input type="text" ng-model="transitController.periodicReport.endDate" placeholder={{transitController.periodicReport.endDate}}><br>
+                <button ng-click="transitController.getPeriodicReport(transitController.periodicReport)">Change period</button>
+            </form>
+
+            <h1>Daily report</h1>
+            <hr>
+            <form>
+                <input type="text" ng-model="transitController.dailyReport.date" placeholder={{transitController.dailyReport.date}}><br>
+                <button ng-click="transitController.getDailyReport(transitController.dailyReport)">Change day</button>
+            </form>
+
+            <h1>Transits</h1>
+            <hr>
+            <form>
+                <input type="text" ng-model="transitController.period.startDate" placeholder={{transitController.periodicReport.startDate}}><br>
+                <input type="text" ng-model="transitController.period.endDate" placeholder={{transitController.periodicReport.endDate}}><br>
+                <button ng-click="transitController.getTransits(transitController.period)">Show transits in the given period</button>
+            </form>
+        </div>
+
+        <div class="center">
+            <h1>{{transitController.transitsTitle}}</h1>
+            <hr>
+            <table ng-repeat="transit in transitController.transits">
+                <tr>
+                    <th colspan=2>{{transit.sourceAddress}} - {{transit.destinationAddress}}</th>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td>{{transit.date}}</td>
+                </tr>
+                <tr>
+                    <td>Distance</td>
+                    <td>{{transit.distance | number:1}} km</td>
+                </tr>
+                <tr>
+                    <td>Estimated time</td>
+                    <td>{{transit.time | secondsToTime}} HH:mm</td>
+                </tr>
+                <tr>
+                    <td>Average Fuel Consumption</td>
+                    <td>{{transit.avgFuelConsumption | number:1}} l</td>
+                </tr>
+                <tr>
+                    <td>Fuel cost per 1 litre</td>
+                    <td>{{transit.fuelCostPerLitre | number:1}} PLN</td>
+                </tr>
+                <tr>
+                    <td>Estimated fuel burnt</td>
+                    <td>{{transit.fuelBurnt | number:1}} l</td>
+                </tr>
+                <tr>
+                    <td>Estimated fuel cost</td>
+                    <td>{{transit.fuelCost | number:1}} PLN</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="right">
+            <h1>Reports</h1>
+            <hr>
+            <table>
+                <tr>
+                    <th colspan=2>{{transitController.dailyReportTitle}}</th>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td>{{transitController.dailyReport.date}}</td>
+                </tr>
+                <tr>
+                    <td>Total distance</td>
+                    <td>{{transitController.dailyReport.totalDistance | number:1}} km</td>
+                </tr>
+                <tr>
+                    <td>Total fuel burnt</td>
+                    <td>{{transitController.dailyReport.totalFuelBurnt | number:1}} l</td>
+                </tr>
+                <tr>
+                    <td>Total fuel cost</td>
+                    <td>{{transitController.dailyReport.totalFuelCost | number:1}} PLN</td>
+                </tr>
+                <tr>
+                    <td>Total time</td>
+                    <td>{{transitController.dailyReport.totalTime | secondsToTime}} HH:mm</td>
+                </tr>
+            </table>
+            <br>
+            <table>
+                <tr>
+                    <th colspan=2>{{transitController.periodicReportTitle}}</th>
+                </tr>
+                <tr>
+                    <td>Start Date</td>
+                    <td>{{transitController.periodicReport.startDate}}</td>
+                </tr>
+                <tr>
+                    <td>End Date</td>
+                    <td>{{transitController.periodicReport.endDate}}</td>
+                </tr>
+                <tr>
+                    <td>Total distance</td>
+                    <td>{{transitController.periodicReport.totalDistance | number:1}} km</td>
+                </tr>
+                <tr>
+                    <td>Total fuel burnt</td>
+                    <td>{{transitController.periodicReport.totalFuelBurnt | number:1}} l</td>
+                </tr>
+                <tr>
+                    <td>Total fuel cost</td>
+                    <td>{{transitController.periodicReport.totalFuelCost | number:1}} PLN</td>
+                </tr>
+                <tr>
+                    <td>Total time</td>
+                    <td>{{transitController.periodicReport.totalTime | secondsToTime}} HH:mm</td>
+                </tr>
+                <tr>
+                    <td>Average daily distance</td>
+                    <td>{{transitController.periodicReport.avgDailyDistance | number:1}} km</td>
+                </tr>
+                <tr>
+                    <td>Average daily fuel burnt</td>
+                    <td>{{transitController.periodicReport.avgDailyFuelBurnt | number:1}} l</td>
+                </tr>
+                <tr>
+                    <td>Average daily fuel cost</td>
+                    <td>{{transitController.periodicReport.avgDailyFuelCost | number:1}} PLN</td>
+                </tr>
+                <tr>
+                    <td>Average daily time</td>
+                    <td>{{transitController.periodicReport.avgDailyTime | secondsToTime}} HH:mm</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/controller.js"></script>
+    <script type="text/javascript" src="js/filter.js"></script>
+</body>
+</html>
