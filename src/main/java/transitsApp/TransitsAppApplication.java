@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TransitsAppApplication {
 
-	public static void main(String[] args) throws IOException {
-		SpringApplication.run(TransitsAppApplication.class, args);
+    public static void main(String[] args) throws IOException {
+        SpringApplication.run(TransitsAppApplication.class, args);
 
-	}
+    }
 }

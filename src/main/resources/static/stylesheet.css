@@ -1,19 +1,52 @@
 body {
-	background-color: gray;
+    background-color: gray;
     font-family: sans-serif;
 }
 
 #header {
-	z-index: 1;
-	position: fixed;
-	height: 2.2em;
-	width: 101%;
-	margin-top: -1em;
-	margin-left: -1%;
-	background-color: #2a2a2a;
+    z-index: 1;
+    position: fixed;
+    height: 2.2em;
+    width: 101%;
+    margin-top: -1em;
+    margin-left: -1%;
+    background-color: #2a2a2a;
     color: white;
     text-align: center;
     font-size: 2.5em;
+}
+
+#content {
+    display: flex;
+}
+
+#left, #center, #right {
+    overflow: auto;
+    position: relative;
+    margin-top: 4em;
+    border-radius: 5px;
+    height: 90vh;
+}
+
+#left {
+    order: 1;
+    width: 20%;
+    background-color: #2a2a2a;
+
+}
+
+#center {
+    width: 39%;
+    background-color: white;
+    margin-left: 1%;
+    order: 2;
+}
+
+#right {
+    width: 39%;
+    background-color: white;
+    margin-left: 1%;
+    order: 3;
 }
 
 table {
@@ -23,20 +56,36 @@ table {
     margin-right: 5%
 }
 
-td, th {
+table td, table th {
     border: 1px solid black;
-    height: 1.4em; 
+    height: 1.4em;
 }
 
-th {
+table tr:nth-child(odd) {
+    background: lightgray;
+}
+
+table tr:hover {
+    background: black;
+    color: white;
+}
+
+table th {
     color: white;
     background: #2a2a2a;
     font-weight: bold;
 }
 
-td {  
-    background: #FAFAFA;
-    text-align: center;
+table td {
+    text-align: left;
+}
+
+form {
+    font-size: 1em;
+    margin-left: 10%;
+    margin-right: 10%;
+    color: white;
+
 }
 
 input {
@@ -50,74 +99,40 @@ button {
     margin-top: 1em;
     height: 2em;
     border-radius: 5px;
+    transition-duration: 0.4s;
+    border: none;
 }
 
-#content {
-    display: flex;
+button:hover {
+    background-color: darkgrey;
+    font-weight: bold;
 }
 
-.left, .center, .right {
-    overflow: auto;
-    position: relative;
-    margin-top: 4em;
-    border-radius: 5px;
-    height: 90vh;
+h1 {
+    margin-top: 1em;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
-.left {
-    order: 1;
-	width: 20%;
-	background-color: #2a2a2a;
-    
+#left h1 {
+    margin-left: 10%;
+    color: white;
 }
 
-.center, .right {
-    width: 39%;
-	background-color: white;
-    margin-left: 1%;
-}
-.center {
-    order: 2;
+#center h1, #right h1 {
+    margin-left: 5%;
+    color: black;
 }
 
-.right {
-    order: 3;
-}
-
-.center hr, .right hr {
-	margin-left: 5%;
-	margin-right: 5%;
-    border-top: 1px solid black;
-}
-
-.left hr {
-	margin-left: 10%;
-	margin-right: 10%;
+#left hr {
+    margin-left: 10%;
+    margin-right: 10%;
     border: 0;
     border-top: 1px solid white;
 }
 
-
-.left form {
-	font-size: 1em;
-	margin-left: 10%;
-	margin-right: 10%;
-	color: white;
-    
-}
-
-h1 {
-     margin-top: 1em;
-	font-size: 1.2em;
-	font-weight: bold;
-}
-
-.left h1 {
-    margin-left: 10%;
-	color: white;
-}
-
-.center h1, .right h1 {
+#center hr, #right hr {
     margin-left: 5%;
-	color: black;
+    margin-right: 5%;
+    border-top: 1px solid black;
 }

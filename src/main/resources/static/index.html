@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="transitApp">
+
 <head>
     <meta charset="UTF-8"></meta>
     <link type="text/css" rel="stylesheet" href="stylesheet.css" />
@@ -10,9 +11,9 @@
     <div id="header">
         <p>Transits</p>
     </div>
-    
+
     <div id="content">
-        <div class="left">
+        <div id="left">
             <h1>Add transit</h1>
             <hr>
             <form>
@@ -48,7 +49,7 @@
             </form>
         </div>
 
-        <div class="center">
+        <div id="center">
             <h1>{{transitController.transitsTitle}}</h1>
             <hr>
             <table ng-repeat="transit in transitController.transits">
@@ -86,7 +87,7 @@
             </table>
         </div>
 
-        <div class="right">
+        <div id="right">
             <h1>Reports</h1>
             <hr>
             <table>
@@ -162,10 +163,11 @@
             </table>
         </div>
     </div>
-    
+
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/controller.js"></script>
     <script type="text/javascript" src="js/filter.js"></script>
 </body>
+
 </html>
