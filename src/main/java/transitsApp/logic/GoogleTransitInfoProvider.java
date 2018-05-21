@@ -16,7 +16,7 @@ import com.fasterxml.jackson.core.JsonToken;
 @Component
 public class GoogleTransitInfoProvider implements TransitInfoProvider {
 
-    private static final String API_KEY = "AIzaSyDxpv2-Ogdf9GF6eq3jrG7ciyphIFYHVy4";
+    private static final String API_KEY = "API_KEY_HERE"; //Google distance matrix api key
 
     @Override
     public int getDistance(String source, String destination) {
